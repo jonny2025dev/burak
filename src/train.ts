@@ -1,22 +1,47 @@
+// H2-TASK: 
+
+// Shunday function tuzing, unga string argument pass bolsin.
+//  Function ushbu agrumentdagi digitlarni yangi stringda return qilsin
+// MASALAN: 
+// getDigits("J2o5n1ny") return qiladi "251" codni tsda yozib ber soddaroq bolsin 
+
+
+
+
+function getDigits(input: string): string {
+  let result = "";
+  for (let char of input) {
+    if (char >= '0' && char <= '9') {
+      result += char;
+    }
+  }
+  return result;
+}
+
+console.log(getDigits("J2o5n1ny"));
+
+
 // TASK H: 
+
 
 // shunday function tuzing, u integerlardan iborat arrayni argument sifatida qabul qilib,
 //  faqat positive qiymatlarni olib string holatda return qilsin
 // MASALAN: getPositive([1, -4, 2]) return qiladi "12"
 
-function getPositive(arr: number[]): string {
-  let result = "";
+// function getPositive(arr: number[]): string {
+//   let result = "";
 
-  for (let num of arr) {
-    if (num > 0) {
-      result += num.toString();
-    }
-  }
+//   for (let num of arr) {
+//     if (num > 0) {
+//       result += num.toString();
+//     }
+//   }
 
-  return result;
-}
+//   return result;
+// }
 
-console.log(getPositive([1, -4, 3]));
+// console.log(getPositive([1, -4, 3]));
+
 
 
 
