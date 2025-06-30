@@ -6,7 +6,7 @@ routerAdmin.get("/", restaurantConroller.goHome);
 
 routerAdmin
   .get ("/login", restaurantConroller.getLogin)
-  .post("/login/process", restaurantConroller.processLogin);
+  .post("/login", restaurantConroller.processLogin);
 
 routerAdmin
   .get ("/signup", restaurantConroller.getSignup)
