@@ -2,6 +2,7 @@ import MemberModel from "../schema/Member.model";
 import { LoginInput, Member, MemberInput } from "../libs/types/member";
 import Errors, { HttpCode, Message } from "../libs/errors";
 import { MemberType } from "../libs/enums/memeber.enum";
+import * as bcrypt from "bcrypt";
 
 class MemberService {
     private readonly memberModel;
@@ -10,24 +11,28 @@ class MemberService {
       this.memberModel = MemberModel;
     }
 
-    public async processSignup(input: MemberInput): Promise<Member> {
+    public async processSignup(input: MemberInput): Promise<any> {
       const exist = await this.memberModel
         .findOne({memberType: MemberType.RESTAURANT })
         .exec();
-      console.log("exist:", exist);
+        console.log("exists:", exist);
       if (exist) throw new Errors(HttpCode.BAD_REQUEST, Message.CREATE_FAILED);
-     
+      console.log("before:", input.memberPassword);
+      const salt = await bcrypt.genSalt();
+      input.memberPassword = await bcrypt.hash(input.memberPassword, salt);
+      console.log("after:", input.memberPassword);
+
       try {
         const result = await this.memberModel.create(input);
-        result.memberPassword = "";
-        return result;
-
-      }catch (err) {
+      result.memberPassword = "";
+      console.log(result)
+      return result
+      }catch(err){
         throw  new Errors(HttpCode.BAD_REQUEST, Message.CREATE_FAILED);
       }   
     }
 
-    public async processLogin(input: LoginInput): Promise<Member> {
+    public async processLogin(input: LoginInput): Promise<any> {
       const member = await this.memberModel
         .findOne (
           { memberNick: input.memberNick },
@@ -35,12 +40,16 @@ class MemberService {
         )
         .exec();
       if (!member) throw new Errors(HttpCode.NOT_FOUND, Message.NO_MEMBER_NICK);
+      
+      const isMatch = await bcrypt.compare(
+        input.memberPassword,
+        member.memberPassword
+      );
 
-      const isMatch = input.memberPassword === member.memberPassword;
       if (!isMatch) {
         throw new Errors(HttpCode.UNAUTHORIZED, Message.WRONG_PASSWORD);
       }
-
+      console.log("member:", member);
       return await this.memberModel.findById(member._id).exec();
   }
 }

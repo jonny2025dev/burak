@@ -26,8 +26,9 @@ const memberSchema = new Schema ({
   },
 
   memberPassword: {
-    type: String, select: false,
-     required: true,
+    type: String, 
+    select: false,
+    required: true,
   },
 
   memberAddress: {
@@ -51,4 +52,4 @@ const memberSchema = new Schema ({
 { timestamps: true }       // updatedAt , createdAt 
 );
 
-export default mongoose.model('Member', memberSchema);
+export default mongoose.model("Member", memberSchema);

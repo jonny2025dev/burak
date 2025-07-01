@@ -1,3 +1,44 @@
+// TASK-I:
+
+// Shunday function tuzing, u parametrdagi array ichida eng ko'p
+// takrorlangan raqamni topib qaytarsin.
+
+// MASALAN: majorityElement([1, 2, 3, 4, 5, 4, 3, 4]); return 4
+
+// Yuqoridag misolda argument sifatida kiritilayotgan array tarkibida 4 soni 
+// ko'p takrorlanganligi uchun 4'ni return qilmoqda.
+
+
+
+function majorityElement(arr: number[]): number {
+  const countMap: { [key: number]: number } = {};
+
+  for (const num of arr) {
+    countMap[num] = (countMap[num] || 0) + 1;
+  }
+
+  let max = 0;
+  let result = arr[0];
+
+  for (const num in countMap) {
+    if (countMap[num] > max) {
+      max = countMap[num];
+      result = Number(num);
+    }
+  }
+
+  return result;
+}
+
+
+console.log(majorityElement([1, 2, 3, 4, 5, 4, 3, 4])); 
+
+
+
+
+
+
+
 // H2-TASK: 
 
 // Shunday function tuzing, unga string argument pass bolsin.
@@ -8,17 +49,17 @@
 
 
 
-function getDigits(input: string): string {
-  let result = "";
-  for (let char of input) {
-    if (char >= '0' && char <= '9') {
-      result += char;
-    }
-  }
-  return result;
-}
+// function getDigits(input: string): string {
+//   let result = "";
+//   for (let char of input) {
+//     if (char >= '0' && char <= '9') {
+//       result += char;
+//     }
+//   }
+//   return result;
+// }
 
-console.log(getDigits("J2o5n1ny"));
+// console.log(getDigits("J2o5n1ny"));
 
 
 // TASK H: 
