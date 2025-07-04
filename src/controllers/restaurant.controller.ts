@@ -10,7 +10,7 @@ const restaurantConroller: T = {};
 restaurantConroller.goHome = (req: Request, res: Response) => {
   try{
     console.log("goHome");
-    res.send("Home Page");
+    res.render("home");
     // • send• | - json | - redirect• | • end • | - render
   } catch (err) {
     console.log("Error, goHome:", err);
@@ -20,7 +20,7 @@ restaurantConroller.goHome = (req: Request, res: Response) => {
 restaurantConroller.getSignup = (req: Request, res: Response) => {
   try{``
     console.log("getSignup");
-    res.send("Signup Page");
+    res.render("signup");
   } catch (err) {
     console.log("Error, getSignup:", err);
   }
@@ -29,7 +29,7 @@ restaurantConroller.getSignup = (req: Request, res: Response) => {
 restaurantConroller.getLogin = (req: Request, res: Response) => {
   try{
     console.log("getLogin");
-    res.send("Login Page");
+    res.render("login");
   } catch (err) {
     console.log("Error, getLogin:", err);
   }
@@ -43,7 +43,7 @@ restaurantConroller.processSignup =  async (req: Request, res: Response) => {
     const newMember: MemberInput = req.body
     newMember.memberType = MemberType.RESTAURANT;
     const result = await memberService.processSignup(newMember);
-    
+
     //TODO Sessions Authentications
 
     res.send(result);
