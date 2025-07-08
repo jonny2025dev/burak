@@ -1,3 +1,29 @@
+// TASK K: 
+
+// Shunday function yozing, u string qabul qilsin va string ichidagi unli harflar sonini qaytarsin.
+// MASALAN: countVowels("string") return 1;
+
+
+function countVowels(str: string): number {
+  const vowels = ['a', 'e', 'i', 'o', 'u'];
+  let count = 0;
+
+  for (const char of str.toLowerCase()) {
+    if (vowels.includes(char)) {
+      count++;
+    }
+  }
+
+  return count;
+}
+
+console.log(countVowels("string")); 
+
+
+
+
+
+
 // TASK-I:
 
 // Shunday function tuzing, u parametrdagi array ichida eng ko'p
@@ -10,28 +36,28 @@
 
 
 
-function majorityElement(arr: number[]): number {
-  const countMap: { [key: number]: number } = {};
+// function majorityElement(arr: number[]): number {
+//   const countMap: { [key: number]: number } = {};
 
-  for (const num of arr) {
-    countMap[num] = (countMap[num] || 0) + 1;
-  }
+//   for (const num of arr) {
+//     countMap[num] = (countMap[num] || 0) + 1;
+//   }
 
-  let max = 0;
-  let result = arr[0];
+//   let max = 0;
+//   let result = arr[0];
 
-  for (const num in countMap) {
-    if (countMap[num] > max) {
-      max = countMap[num];
-      result = Number(num);
-    }
-  }
+//   for (const num in countMap) {
+//     if (countMap[num] > max) {
+//       max = countMap[num];
+//       result = Number(num);
+//     }
+//   }
 
-  return result;
-}
+//   return result;
+// }
 
 
-console.log(majorityElement([1, 2, 3, 4, 5, 4, 3, 4])); 
+// console.log(majorityElement([1, 2, 3, 4, 5, 4, 3, 4])); 
 
 
 
