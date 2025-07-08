@@ -3,7 +3,7 @@ import { T }  from "../libs/types/common";
 import MemberService from "../models/Member.service";
 import { AdminRequest, LoginInput, MemberInput } from "../libs/types/member";
 import { MemberType } from "../libs/enums/memeber.enum";
-import { Message } from "../libs/errors";
+import Errors, { Message } from "../libs/errors";
 
 const memberService = new MemberService();
 
@@ -15,6 +15,7 @@ restaurantConroller.goHome = (req: Request, res: Response) => {
     // • send• | - json | - redirect• | • end • | - render
   } catch (err) {
     console.log("Error, goHome:", err);
+    res.redirect("/admin");
   }
 };
 
@@ -24,6 +25,7 @@ restaurantConroller.getSignup = (req: Request, res: Response) => {
     res.render("signup");
   } catch (err) {
     console.log("Error, getSignup:", err);
+    res.redirect("/admin");
   }
 }
 
@@ -33,6 +35,7 @@ restaurantConroller.getLogin = (req: Request, res: Response) => {
     res.render("login");
   } catch (err) {
     console.log("Error, getLogin:", err);
+    res.redirect("/admin");
   }
 };
 
@@ -54,8 +57,12 @@ restaurantConroller.processSignup =  async  (
     });
   } catch (err) {
     console.log("Error, processSignup:", err);
-    res.send(err);
-  }
+    const message =
+      err instanceof Errors ? err.message: Message.SOMETHING_WENT_WRONG;
+    res.send (
+      `<script> alert ("${message}"); window.location.replace('admin/signup') </script>`
+    )
+  };
 };
 
 
@@ -77,7 +84,11 @@ restaurantConroller.processLogin = async (
 
   } catch (err) {
     console.log("Error, processLogin:", err);
-    res.send(err);
+    const message =
+    err instanceof Errors ? err.message: Message.SOMETHING_WENT_WRONG;
+  res.send (
+    `<script> alert ("${message}"); window.location.replace('admin/login') </script>`
+  );
   }
 };
 
@@ -95,5 +106,16 @@ restaurantConroller.checkAuthSession= async (
   }
 };
 
+restaurantConroller.logout = async (req: AdminRequest, res: Response) => {
+  try {
+    console.log("logout");
+    req.session.destroy(function () {
+    res.redirect("/admin");
+    });
+  } catch (err) {
+    console.log ("Error, logout:", err);
+    res.redirect("/admin");
+  }
+};
 
 export default restaurantConroller;
