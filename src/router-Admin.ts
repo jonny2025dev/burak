@@ -17,7 +17,11 @@ routerAdmin.get("/check-me", restaurantConroller.checkAuthSession);
 
 
 /**Product */
-routerAdmin.get("/product/all", productController.getAllProducts);
+routerAdmin.get(
+  "/product/all", 
+  restaurantConroller.verifyRestaurant, 
+  productController.getAllProducts
+);
 routerAdmin.post("/product/create", productController.createNewProduct);
 routerAdmin.post("/product/:id", productController.updateChosenProduct);
 /**User */
