@@ -5,14 +5,14 @@
 // MASALAN: reverseSentence("we like coding!") return "ew ekil gnidoc";
 
 
-function reverseSentence(sentence: string): string {
-  return sentence
-    .split(" ")              
-    .map(word => word.split("").reverse().join("")) 
-    .join(" ");        
-}
+// function reverseSentence(sentence: string): string {
+//   return sentence
+//     .split(" ")              
+//     .map(word => word.split("").reverse().join("")) 
+//     .join(" ");        
+// }
 
-console.log(reverseSentence("we like coding!")); 
+// console.log(reverseSentence("we like coding!")); 
 
 
 
