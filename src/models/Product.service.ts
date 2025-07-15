@@ -13,14 +13,14 @@ class ProductService {
 /** SPA */
 /** SSR */
 
-public async getAllProducts(): Promise<Product> {
+public async getAllProducts(): Promise<any> {
   const result = await this.productModel.find().exec();
   if (!result) throw new Errors(HttpCode.NOT_FOUND, Message.NO_DATA_FOUND);
   
   return result;
 }
   
-  public async createNewProduct (input: ProductInput): Promise<Product> {
+  public async createNewProduct (input: ProductInput): Promise<any> {
     try {
       return await this.productModel.create(input);
     } catch (err) {
@@ -32,7 +32,7 @@ public async getAllProducts(): Promise<Product> {
   public async updateChosenProduct(
     id: string,
     input: ProductUpdateInput
-  ): Promise<Product> {
+  ): Promise<any> {
     id = shapeIntoMongoose0bjectId(id);
     const result = await this.productModel
       .findByIdAndUpdate({_id: id }, input, { new: true })
