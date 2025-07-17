@@ -46,8 +46,7 @@ routerAdmin.get(
 routerAdmin.get(
   "/user/all",
    restaurantConroller.verifyRestaurant, 
-   restaurantConroller.updateChosenUser
-  );
+   restaurantConroller.updateChosenUser);
 
 
 
