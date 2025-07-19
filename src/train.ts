@@ -1,3 +1,20 @@
+// TASK P:
+
+// Parametr sifatida yagona object qabul qiladigan function yozing.
+// Qabul qilingan objectni nested array sifatida convert qilib qaytarsin
+
+// MASALAN: objectToArray( {a: 10, b: 20}) return [['a', 10], ['b', 20]]   tsda yozib ber
+
+function objectToArray<T extends Record<string, unknown>>(obj: T): [keyof T, T[keyof T]][] {
+  const entries = Object.entries(obj) as [keyof T, T[keyof T]][];
+  return entries;
+}
+
+const result = objectToArray({ a: 10, b: 20 });
+console.log(result);
+
+
+
 
 // TASK O:
 
@@ -10,19 +27,19 @@
 // Qolganlari nested bo'lib yoki type'lari number emas. tsda yozib ber
 
 
-function calculateSumOfNumbers(arr: any[]): number {
-  let sum = 0;
+// function calculateSumOfNumbers(arr: any[]): number {
+//   let sum = 0;
 
-  for (const item of arr) {
-    if (typeof item === "number" && !isNaN(item)) {
-      sum += item;
-    }
-  }
+//   for (const item of arr) {
+//     if (typeof item === "number" && !isNaN(item)) {
+//       sum += item;
+//     }
+//   }
 
-  return sum;
-}
+//   return sum;
+// }
 
-console.log(calculateSumOfNumbers([10, "10", { son: 10 }, true, 35])); 
+// console.log(calculateSumOfNumbers([10, "10", { son: 10 }, true, 35])); 
 
 
 
