@@ -1,3 +1,31 @@
+
+// TASK O:
+
+// Shunday function yozing va u har xil qiymatlardan iborat array qabul qilsin.
+// Va array ichidagi sonlar yig'indisini hisoblab chiqgan javobni qaytarsin
+
+// MASALAN: calculateSumOfNumbers([10, "10", {son: 10}, true, 35]); return 45
+
+// Yuqoridagi misolda array tarkibida faqatgina ikkita yagona son mavjud bular 10 hamda 35
+// Qolganlari nested bo'lib yoki type'lari number emas. tsda yozib ber
+
+
+function calculateSumOfNumbers(arr: any[]): number {
+  let sum = 0;
+
+  for (const item of arr) {
+    if (typeof item === "number" && !isNaN(item)) {
+      sum += item;
+    }
+  }
+
+  return sum;
+}
+
+console.log(calculateSumOfNumbers([10, "10", { son: 10 }, true, 35])); 
+
+
+
 // TASK N:
 
 // Shunday function yozing, u string qabul qilsin va string palindrom yani togri oqilganda ham, 
@@ -6,15 +34,15 @@
 // MASALAN: palindromCheck("dad") return true;  palindromCheck("son") return false;
 
 
-function palindromCheck(str: string): boolean {
-  const cleaned: string = str.toLowerCase().replace(/[^a-z0-9]/gi, '');
-  const reversed: string = cleaned.split('').reverse().join('');
-  return cleaned === reversed;
-}
+// function palindromCheck(str: string): boolean {
+//   const cleaned: string = str.toLowerCase().replace(/[^a-z0-9]/gi, '');
+//   const reversed: string = cleaned.split('').reverse().join('');
+//   return cleaned === reversed;
+// }
 
-console.log(palindromCheck("Dad")); 
-console.log(palindromCheck("A man, a plan, a canal: Panama")); 
-console.log(palindromCheck("Hello")); 
+// console.log(palindromCheck("Dad")); 
+// console.log(palindromCheck("A man, a plan, a canal: Panama")); 
+// console.log(palindromCheck("Hello")); 
 
 
 
