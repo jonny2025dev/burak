@@ -78,8 +78,7 @@ restaurantConroller.processLogin = async (
   try{
     console.log("processLogin");
     console.log("body:", req.body);
-    throw new Error("FORCED STOP!");
-
+    
     const input: LoginInput = req.body;
     const result = await memberService.processLogin(input);
 

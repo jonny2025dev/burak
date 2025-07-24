@@ -1,3 +1,26 @@
+
+// TASK R
+
+// Shunday function yozing, u string parametrga ega bo'lsin.
+// Agar argument sifatida berilayotgan string, "1 + 2" bo'lsa,
+// string ichidagi sonlarin yig'indisni hisoblab, number holatida qaytarsin
+
+// MASALAN: calculate("1 + 3"); return 4;
+// 1 + 3 = 4, shu sababli 4 natijani qaytarmoqda. tsda yozib ber
+
+function calculate(expression: string): number {
+  const parts = expression.split('+').map(part => part.trim());
+  const numbers = parts.map(Number);
+  return numbers.reduce((sum, num) => sum + num, 0);
+}
+
+
+console.log(calculate("1 + 2"));   
+console.log(calculate("10 + 5"));   
+console.log(calculate(" 7 +  8"));
+
+
+
 // TASK P:
 
 // Parametr sifatida yagona object qabul qiladigan function yozing.
@@ -5,13 +28,13 @@
 
 // MASALAN: objectToArray( {a: 10, b: 20}) return [['a', 10], ['b', 20]]   tsda yozib ber
 
-function objectToArray<T extends Record<string, unknown>>(obj: T): [keyof T, T[keyof T]][] {
-  const entries = Object.entries(obj) as [keyof T, T[keyof T]][];
-  return entries;
-}
+// function objectToArray<T extends Record<string, unknown>>(obj: T): [keyof T, T[keyof T]][] {
+//   const entries = Object.entries(obj) as [keyof T, T[keyof T]][];
+//   return entries;
+// }
 
-const result = objectToArray({ a: 10, b: 20 });
-console.log(result);
+// const result = objectToArray({ a: 10, b: 20 });
+// console.log(result);
 
 
 

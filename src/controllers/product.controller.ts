@@ -15,7 +15,6 @@ productConroller.getAllProducts =  async (req: Request, res: Response) => {
       console.log("getAllProducts");
       const data = await productService.getAllProducts();
       console.log("data", data);
-
       res.render("products", { products: data });
 
     } catch (err) {
@@ -25,7 +24,10 @@ productConroller.getAllProducts =  async (req: Request, res: Response) => {
     }
   };
 
-  productConroller.createNewProduct =  async (req: AdminRequest, res: Response) => {
+  productConroller.createNewProduct =  async (
+    req: AdminRequest,
+     res: Response
+    ) => {
     try{
       console.log("createNewProduct");
       console.log("req.files: ", req.files);
