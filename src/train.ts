@@ -1,3 +1,28 @@
+// TASK V
+
+// Shunday function yozing, uni string parametri bo'lsin.
+// Va bu function stringdagi har bir harfni o'zi bilan
+// necha marotaba taktorlanganligini ko'rsatuvchi object qaytarsin.
+  
+// MASALAN: countChars("hello") return {h: 1, e: 1, l: 2, o: 1}
+
+// Yuqoridagi misolda, 'hello' so'zi tarkibida
+// qatnashgan harflar necha marotaba takrorlangini bilan
+// object sifatida qaytarilmoqda.
+
+
+function countChars(text: string): Record<string, number> {
+  const result: Record<string, number> = {};
+  for (const ch of text) {
+    result[ch] = (result[ch] || 0) + 1;
+  }
+  return result;
+}
+
+console.log(countChars("hello"));     
+console.log(countChars("Mississippi")); 
+
+
 // TASK U
 
 // Shunday function tuzing, uni number parametri bo'lsin.
@@ -10,18 +35,18 @@
 // Va 0'dan boshlab sanaganda 9'gacha 4'ta toq son mavjud. 
 // Keyingi namunada ham xuddi shunday xolat takrorlanmoqda.
 
-function sumOdds(n: number): number {
-  let count = 0;
-  for (let i = 1; i < n; i += 2) {
-    count++;
-  }
-  return count;
-}
+// function sumOdds(n: number): number {
+//   let count = 0;
+//   for (let i = 1; i < n; i += 2) {
+//     count++;
+//   }
+//   return count;
+// }
 
-console.log(sumOdds(9));  
-console.log(sumOdds(11)); 
-console.log(sumOdds(0));   
-console.log(sumOdds(1));   
+// console.log(sumOdds(9));  
+// console.log(sumOdds(11)); 
+// console.log(sumOdds(0));   
+// console.log(sumOdds(1));   
 
 
 // TASK T
