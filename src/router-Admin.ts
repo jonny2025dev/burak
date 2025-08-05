@@ -1,53 +1,54 @@
-import express  from "express";
+import express, { Request, Response } from "express";
 const routerAdmin = express.Router();
-import restaurantConroller from "./controllers/restaurant.controller";
+import restaurantController from "./controllers/restaurant.controller";
 import productController from "./controllers/product.controller";
-import  makeUploader  from "./libs/utils/uploader";
-/** restaurant**/
-routerAdmin.get("/", restaurantConroller.goHome);
+import makeUploader from "./libs/utils/uploader";
+
+/* RESTURANT */
+routerAdmin.get("/", restaurantController.goHome);
+routerAdmin
+  .get("/login", restaurantController.getLogin)
+  .post("/login", restaurantController.processLogin);
 
 routerAdmin
-  .get ("/login", restaurantConroller.getLogin)
-  .post("/login", restaurantConroller.processLogin);
-
-routerAdmin
-  .get ("/signup", restaurantConroller.getSignup)
-  .post("/signup", 
+  .get("/signup", restaurantController.getSignup)
+  .post(
+    "/signup",
     makeUploader("members").single("memberImage"),
-    restaurantConroller.processSignup);
-routerAdmin.get("/logout", restaurantConroller.logout);
-routerAdmin.get("/check-me", restaurantConroller.checkAuthSession);
+    restaurantController.processSignup
+  );
 
+routerAdmin.get("/logout", restaurantController.logout);
+routerAdmin.get("/check-me", restaurantController.checkAuthSession);
 
-/**Product */
+/* Product */
 routerAdmin.get(
-  "/product/all", 
-  restaurantConroller.verifyRestaurant, 
+  "/product/all",
+  restaurantController.verifyResturant,
   productController.getAllProducts
 );
 routerAdmin.post(
   "/product/create",
-  restaurantConroller.verifyRestaurant, 
-  // uploadProductImage.single('productImage'),
-  makeUploader("products").array("productImages", 5,),
-   productController.createNewProduct
-  );
+  restaurantController.verifyResturant,
+  makeUploader("products").array("productImage", 5),
+  productController.createNewProduct
+);
 routerAdmin.post(
   "/product/:id",
-  restaurantConroller.verifyRestaurant, 
-   productController.updateChosenProduct
-  );
-/**User */
+  restaurantController.verifyResturant,
+  productController.updateChosenProduct
+);
+
+/* USER */
 routerAdmin.get(
   "/user/all",
-   restaurantConroller.verifyRestaurant, 
-   restaurantConroller.getUsers
-  );
-routerAdmin.get(
-  "/user/all",
-   restaurantConroller.verifyRestaurant, 
-   restaurantConroller.updateChosenUser);
+  restaurantController.verifyResturant,
+  restaurantController.getUsers
+);
 
-
-
+routerAdmin.post(
+  "/user/edit",
+  restaurantController.verifyResturant,
+  restaurantController.updateChosenUser
+);
 export default routerAdmin;
