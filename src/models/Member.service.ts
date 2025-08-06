@@ -14,6 +14,9 @@ import * as bcrypt from "bcryptjs";
 import { shapeIntoMongooseObjectId } from "../libs/config";
 
 class MemberService {
+  // updateMember() {
+  //   throw new Error("Method not implemented.");
+  // }
   private readonly memberModule;
   constructor() {
     this.memberModule = MemberModel;
@@ -64,6 +67,20 @@ class MemberService {
 
     return result;
   }
+
+  public async updateMember(
+    member:Member,
+    input: MemberUpdateInput
+  ): Promise<Member> {
+    const memberId = shapeIntoMongooseObjectId(member._id);
+    const result = await this.memberModule 
+      .findByIdAndUpdate({_id: memberId }, input, {new: true })
+      .exec();
+    if (!result) throw new Errors(HttpCode.NOT_MODIFIED, Message.UPDATE_FAILED);
+
+    return result;
+  }
+
   /* SSR */
   public async processSignup(input: MemberInput): Promise<Member> {
     const exist = await this.memberModule
