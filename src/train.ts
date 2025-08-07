@@ -1,4 +1,51 @@
 
+// TASK X
+
+// Shunday function yozing, uni object va string parametrlari bo'lsin.
+// Bu function, birinchi object parametri tarkibida, kalit sifatida ikkinchi string parametri
+// necha marotaba takrorlanganlini sanab qaytarsin.
+
+// Eslatma => Nested object'lar ham sanalsin
+
+// MASALAN: countOccurrences({model: 'Bugatti', steer: {model: 'HANKOOK', size: 30}}, 'model') return 2
+
+// Yuqoridagi misolda, birinchi argument object, ikkinchi argument 'model'.
+// Funktsiya, shu ikkinchi argument 'model', birinchi argument object
+// tarkibida kalit sifatida 2 marotaba takrorlanganligi uchun 2 soni return qilmoqda 
+
+function countOccurrences(obj: object, keyToFind: string): number {
+  let count = 0;
+
+  function recursiveCount(currentObj: any) {
+    for (const key in currentObj) {
+      if (key === keyToFind) {
+        count++;
+      }
+
+      const value = currentObj[key];
+
+      if (typeof value === 'object' && value !== null && !Array.isArray(value)) {
+        recursiveCount(value);
+      }
+    }
+  }
+
+  recursiveCount(obj);
+  return count;
+}
+
+const data = {
+  model: 'Bugatti',
+  steer: {
+    model: 'HANKOOK',
+    size: 30
+  }
+};
+console.log(countOccurrences(data, 'model')); 
+
+
+
+
 // TASK W
 
 // Shunday function yozing, u o'ziga parametr sifatida
@@ -12,20 +59,20 @@
 // asoslanib 3 bo'lakga bo'linib qaytmoqda. Qolgani esa o'z holati qolyapti
 
 
-function chunkArray<T>(arr: T[], size: number): T[][] {
-  if (size <= 0) {
-    throw new Error("size (kesma uzunligi) 0 dan katta bolishi kerak");
-  }
-  const result: T[][] = [];
-  for (let i = 0; i < arr.length; i += size) {
-    result.push(arr.slice(i, i + size));
-  }
-  return result;
-}
+// function chunkArray<T>(arr: T[], size: number): T[][] {
+//   if (size <= 0) {
+//     throw new Error("size (kesma uzunligi) 0 dan katta bolishi kerak");
+//   }
+//   const result: T[][] = [];
+//   for (let i = 0; i < arr.length; i += size) {
+//     result.push(arr.slice(i, i + size));
+//   }
+//   return result;
+// }
 
-console.log(chunkArray([1,2,3,4,5,6,7,8,9,10], 3));
-console.log(chunkArray(["a","b","c"], 2));
-console.log(chunkArray([], 5));
+// console.log(chunkArray([1,2,3,4,5,6,7,8,9,10], 3));
+// console.log(chunkArray(["a","b","c"], 2));
+// console.log(chunkArray([], 5));
 
 
 

@@ -14,14 +14,23 @@ import * as bcrypt from "bcryptjs";
 import { shapeIntoMongooseObjectId } from "../libs/config";
 
 class MemberService {
-  // updateMember() {
-  //   throw new Error("Method not implemented.");
-  // }
   private readonly memberModule;
+
   constructor() {
     this.memberModule = MemberModel;
   }
   /* SPA */
+
+  public async getRestaurant(): Promise<Member> {
+    const result = await this.memberModule 
+     .findOne({ memberType: memberType.RESTAURANT})
+     .lean()
+     .exec();
+    if (!result) throw new Errors(HttpCode.NOT_FOUND, Message.NO_DATA_FOUND);
+
+    return result; 
+  }
+
   public async signup(input: MemberInput): Promise<Member> {
     const salt = await bcrypt.genSalt();
     input.memberPassword = await bcrypt.hash(input.memberPassword, salt);
