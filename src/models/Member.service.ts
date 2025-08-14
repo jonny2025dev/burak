@@ -14,15 +14,15 @@ import * as bcrypt from "bcryptjs";
 import { shapeIntoMongooseObjectId } from "../libs/config";
 
 class MemberService {
-  private readonly memberModule;
+  private readonly memberModul;
 
   constructor() {
-    this.memberModule = MemberModel;
+    this.memberModul = MemberModel;
   }
   /* SPA */
 
   public async getRestaurant(): Promise<Member> {
-    const result = await this.memberModule 
+    const result = await this.memberModul
      .findOne({ memberType: memberType.RESTAURANT})
      .lean()
      .exec();
@@ -35,7 +35,7 @@ class MemberService {
     const salt = await bcrypt.genSalt();
     input.memberPassword = await bcrypt.hash(input.memberPassword, salt);
     try {
-      const result = await this.memberModule.create(input);
+      const result = await this.memberModul.create(input);
       result.memberPassword = "";
       return result.toJSON();
     } catch (err) {
@@ -45,7 +45,7 @@ class MemberService {
   }
 
   public async login(input: LoginInput): Promise<Member> {
-    const member = await this.memberModule
+    const member = await this.memberModul
       .findOne(
         {
           memberNick: input.memberNick,
@@ -66,12 +66,12 @@ class MemberService {
       throw new Errors(HttpCode.UNAUTHORIZED, Message.WRONG_PASSWORD);
     }
 
-    return await this.memberModule.findById(member._id).lean().exec();
+    return await this.memberModul.findById(member._id).lean().exec();
   }
 
   public async getMemberDetail(member: Member): Promise<Member> {
     const memberId = shapeIntoMongooseObjectId(member._id);
-    const result = await this.memberModule.findOne({_id: memberId, memberStatus: memberStatus.ACTIVE}).exec();
+    const result = await this.memberModul.findOne({_id: memberId, memberStatus: memberStatus.ACTIVE}).exec();
     if (!result) throw new Errors(HttpCode.NOT_FOUND, Message.NO_DATA_FOUND);
 
     return result;
@@ -82,7 +82,7 @@ class MemberService {
     input: MemberUpdateInput
   ): Promise<Member> {
     const memberId = shapeIntoMongooseObjectId(member._id);
-    const result = await this.memberModule 
+    const result = await this.memberModul
       .findByIdAndUpdate({_id: memberId }, input, {new: true })
       .exec();
     if (!result) throw new Errors(HttpCode.NOT_MODIFIED, Message.UPDATE_FAILED);
@@ -91,7 +91,7 @@ class MemberService {
   }
 
   public async getTopUsers(): Promise<Member[]> {
-    const result = await this.memberModule
+    const result = await this.memberModul
       .find ({
          memberStatus: memberStatus.ACTIVE, 
          memberPoints: { $gte: 1 }
@@ -104,9 +104,25 @@ class MemberService {
     return result;
   }
 
+  public async addUserPoint(member: Member, point: number): Promise<Member> {
+    const memberId = shapeIntoMongooseObjectId(member._id);
+
+    return await this.memberModul
+      .findOneAndUpdate(
+        {
+          _id: memberId, 
+          memberType: memberType.USER, 
+          memberStatus: memberStatus.ACTIVE,
+        },
+        { $inc: { memberPoints: point } }, 
+        { new: true }
+      )
+      .exec();
+  }
+
   /* SSR */
   public async processSignup(input: MemberInput): Promise<Member> {
-    const exist = await this.memberModule
+    const exist = await this.memberModul
       .findOne({ memberType: memberType.RESTAURANT })
       .exec();
 
@@ -118,7 +134,7 @@ class MemberService {
     console.log("after:", input.memberPassword);
 
     try {
-      const result = await this.memberModule.create(input);
+      const result = await this.memberModul.create(input);
 
       // const tempResult = new this.memberModule(input);
       // const result = await tempResult.save();
@@ -132,7 +148,7 @@ class MemberService {
   }
 
   public async processLogin(input: LoginInput): Promise<Member> {
-    const member = await this.memberModule
+    const member = await this.memberModul
       .findOne(
         { memberNick: input.memberNick },
         {
@@ -154,11 +170,11 @@ class MemberService {
       throw new Errors(HttpCode.UNAUTHORIZED, Message.WRONG_PASSWORD);
     }
 
-    return await this.memberModule.findById(member._id).exec();
+    return await this.memberModul.findById(member._id).exec();
   }
 
   public async getUsers(): Promise<Member[]> {
-    const result = await this.memberModule
+    const result = await this.memberModul
       .find({ memberType: memberType.USER })
       .exec();
     if (!result) throw new Errors(HttpCode.NOT_FOUND, Message.NO_DATA_FOUND);
@@ -167,7 +183,7 @@ class MemberService {
 
   public async updateChosenUser(input: MemberUpdateInput): Promise<Member> {
     input._id = shapeIntoMongooseObjectId(input._id);
-    const result = await this.memberModule
+    const result = await this.memberModul
       .findByIdAndUpdate({ _id: input._id }, input, { new: true })
       .exec();
     if (!result) throw new Errors(HttpCode.NOT_MODIFIED, Message.UPDATE_FAILED);

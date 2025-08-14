@@ -1,4 +1,4 @@
-//  ZTASK Shunday function yozing.
+// TASK Z Shunday function yozing.
 //  Bu function sonlardan iborat array qabul qilsin. 
 //  Function'ning vazifasi array tarkibidagi juft sonlarni topib ularni yig'disini qaytarsin.
 //   MASALAN: sumEvens([1, 2, 3]); return 2; sumEvens([1, 2, 3, 2]); return 4;
