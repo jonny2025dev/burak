@@ -26,8 +26,8 @@ class OrderService {
   ): Promise<Order> {
     console.log("input:", input); 
     const memberId = shapeIntoMongooseObjectId(member._id);
-    const amount = input.reduce ((accumulator: number, item: OrderItemInput) => {
-      return accumulator + item.itemPrice * item. itemQuantity;
+    const amount = input.reduce((accumulator: number, item: OrderItemInput) => {
+      return accumulator + item.itemPrice * item.itemQuantity;
     }, 0);
     const delivery = amount < 100 ? 5 : 0;
 
@@ -35,7 +35,7 @@ class OrderService {
       const newOrder: Order = await this.orderModel.create({
         orderTotal: amount + delivery, 
         orderDelivery: delivery, 
-        memberld: member,
+        memberId: memberId,
     });
 
     const orderId = newOrder._id;
@@ -112,8 +112,8 @@ class OrderService {
     member:Member, 
     input: OrderUpdateInput
   ): Promise<Order> {
-    const memberId = shapeIntoMongooseObjectId (member._id) ,
-      orderId = shapeIntoMongooseObjectId(input.orderld) ,
+    const memberId = shapeIntoMongooseObjectId(member._id) ,
+      orderId = shapeIntoMongooseObjectId(input.orderId) ,
       orderStatus = input.orderStatus;
 
     const result = await this.orderModel
@@ -130,7 +130,7 @@ class OrderService {
     if (!result) throw new Errors(HttpCode.NOT_MODIFIED, Message.UPDATE_FAILED);
     
     if (orderStatus === OrderStatus.PROCESS) {
-      await this.memberService.addUserPoint(member, 1);
+      await this.memberService.addUserPoint(member, +1);
     }
   return result;
   }
