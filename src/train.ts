@@ -1,3 +1,60 @@
+// TASK-ZF:
+
+// Shunday function yozing, uni string parametri bolsin. 
+// String ichidagi har bir sozni bosh harflarini katta harf qilib qaytarsin
+//  lekin 1 yoki 2 harfdan iborat sozlarni esa oz holicha qoldirsin.
+// MASALAN: capitalizeWords('name should be a string') return 'Name Should be a String'
+
+function capitalizeWords(input: string): string {
+  return input
+    .split(" ")
+    .map(word => {
+      if (word.length <= 2) {
+        return word; 
+      }
+      return word.charAt(0).toUpperCase() + word.slice(1);
+    })
+    .join(" ");
+}
+
+console.log(capitalizeWords("name should be a string")); 
+
+console.log(capitalizeWords("a simple ts function")); 
+
+console.log(capitalizeWords("go to school now")); 
+
+
+
+// TASK ZE
+
+// Shunday function yozing, uniygona string parametri mavjud bo'lsin.
+// Bu function string tarkibidagi takrorlangan xarflarni olib tashlab qolgan
+// qiymatni qaytarsin.
+
+// MASALAN: removeDuplicate('stringg') return 'string'
+
+// Yuqoridagi misolda, 'stringg' so'zi tarkibida 'g' harfi takrorlanmoqda
+// funktsiyamiz shu bittadan ortiq takrorlangan harfni olib natijani
+// qaytarmoqda.
+
+// function removeDuplicate(input: string): string {
+//   let result = '';
+//   const seen: Record<string, boolean> = {};
+
+//   for (const char of input) {
+//     if (!seen[char]) {
+//       result += char;
+//       seen[char] = true;
+//     }
+//   }
+
+//   return result;
+// }
+
+
+// console.log(removeDuplicate('stringgg')); 
+// console.log(removeDuplicate('hellooo')); 
+
 
 
 // TASK ZD Shunday function yozing. 
@@ -10,16 +67,16 @@
 // birinchi raqam bu '1' va arrayning '1'chi indeksi bu 3.
 // Bizning function uchinchi berilgan '2' raqamini shu '3' bilan almashtirib, yangilangan arrayni qaytarmoqda.
 
-function changeNumberInArray(index: number, arr: number[], newValue: number): number[] {
-  if (index < 0 || index >= arr.length) {
-    throw new Error("Index is out of range");
-  }
-  const updatedArr = [...arr];
-  updatedArr[index] = newValue;
+// function changeNumberInArray(index: number, arr: number[], newValue: number): number[] {
+//   if (index < 0 || index >= arr.length) {
+//     throw new Error("Index is out of range");
+//   }
+//   const updatedArr = [...arr];
+//   updatedArr[index] = newValue;
 
-  return updatedArr;
-}
-console.log(changeNumberInArray(1, [1, 3, 7, 2], 2));
+//   return updatedArr;
+// }
+// console.log(changeNumberInArray(1, [1, 3, 7, 2], 2));
 
 
 // TASK ZC Selisy (°C) shkalasi bo'yicha raqam qabul qilib, 
