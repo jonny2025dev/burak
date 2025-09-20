@@ -1,15 +1,35 @@
+// TASK ZN:
+
+// Shunday function yozing, uni array va number parametri bo'lsin.
+// Function'ning vazifasi ikkinchi parametr'da berilgan raqam, birinchi
+// array parametr'ning indeksi bo'yicha hisoblanib, shu indeksgacha bo'lgan
+// raqamlarni indeksdan tashqarida bo'lgan raqamlar bilan o'rnini
+// almashtirib qaytarsin.
+// MASALAN: rotateArray([1, 2, 3, 4, 5, 6], 3); return [5, 6, 1, 2, 3, 4];
+
+
+function rotateArray(arr: number[], index: number): number[] {
+  const left = arr.slice(0, index);
+  const right = arr.slice(index);
+  return [...right, ...left];
+}
+
+console.log(rotateArray([1, 2, 3, 4, 5, 6], 3));
+
+
+
 // TASK-ZG: Shunday function yozing, u berilgan string parametrni snake casega otkazib qaytarsin.
 //  MASALAN: capitalizeWords('name should be a string') return 'name_should_be_a_string
 
-function capitalizeWords(input: string): string {
-  return input
-    .toLowerCase()
-    .split(" ")
-    .filter(word => word.trim() !== "")
-    .join("_");
-}
+// function capitalizeWords(input: string): string {
+//   return input
+//     .toLowerCase()
+//     .split(" ")
+//     .filter(word => word.trim() !== "")
+//     .join("_");
+// }
 
-console.log(capitalizeWords("name should be a string"));
+// console.log(capitalizeWords("name should be a string"));
 
 // TASK-ZF:
 
