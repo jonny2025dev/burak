@@ -1,3 +1,27 @@
+
+// TASK-ZO:
+
+// Shunday function yozing, u parametrdagi string ichidagi qavslar miqdori balansda ekanligini aniqlasin. 
+// Ya'ni ochish("(") va yopish(")") qavslar soni bir xil bolishi kerak.
+
+// MASALAN: areParenthesesBalanced("string()ichida(qavslar)soni()balansda") return true
+
+function areParenthesesBalanced(str: string) {
+  let open = 0;
+  let close = 0;
+
+  for (let char of str) {
+    if (char === "(") open++;
+    if (char === ")") close++;
+  }
+
+  return open === close;
+}
+console.log(areParenthesesBalanced("string()ichida(qavslar)soni()balansda"));
+console.log(areParenthesesBalanced("(abc)(def)")); 
+console.log(areParenthesesBalanced("())(")); 
+
+
 // TASK ZN:
 
 // Shunday function yozing, uni array va number parametri bo'lsin.
@@ -8,13 +32,13 @@
 // MASALAN: rotateArray([1, 2, 3, 4, 5, 6], 3); return [5, 6, 1, 2, 3, 4];
 
 
-function rotateArray(arr: number[], index: number): number[] {
-  const left = arr.slice(0, index);
-  const right = arr.slice(index);
-  return [...right, ...left];
-}
+// function rotateArray(arr: number[], index: number): number[] {
+//   const left = arr.slice(0, index);
+//   const right = arr.slice(index);
+//   return [...right, ...left];
+// }
 
-console.log(rotateArray([1, 2, 3, 4, 5, 6], 3));
+// console.log(rotateArray([1, 2, 3, 4, 5, 6], 3));
 
 
 
