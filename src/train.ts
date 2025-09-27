@@ -1,4 +1,27 @@
 
+// TASK-ZP:
+
+// Shunday function yozing, u parametridagi string ichidagi raqam va sonlarni sonini sanasin.
+// MASALAN: countNumberAndLetters(“string152%\¥”) return {number:3, letter:6}
+
+function countNumberAndLetters(str: string): { number: number; letter: number } {
+  let numbers = 0;
+  let letters = 0;
+
+  for (let char of str) {
+    if (/[0-9]/.test(char)) {
+      numbers++;
+    } else if (/[a-zA-Z]/.test(char)) {
+      letters++;
+    }
+  }
+  return { number: numbers, letter: letters };
+}
+console.log(countNumberAndLetters("string152%¥")); 
+console.log(countNumberAndLetters("abc123"));     
+console.log(countNumberAndLetters("Hello! 2025")); 
+
+
 // TASK-ZO:
 
 // Shunday function yozing, u parametrdagi string ichidagi qavslar miqdori balansda ekanligini aniqlasin. 
@@ -6,20 +29,20 @@
 
 // MASALAN: areParenthesesBalanced("string()ichida(qavslar)soni()balansda") return true
 
-function areParenthesesBalanced(str: string) {
-  let open = 0;
-  let close = 0;
+// function areParenthesesBalanced(str: string) {
+//   let open = 0;
+//   let close = 0;
 
-  for (let char of str) {
-    if (char === "(") open++;
-    if (char === ")") close++;
-  }
+//   for (let char of str) {
+//     if (char === "(") open++;
+//     if (char === ")") close++;
+//   }
 
-  return open === close;
-}
-console.log(areParenthesesBalanced("string()ichida(qavslar)soni()balansda"));
-console.log(areParenthesesBalanced("(abc)(def)")); 
-console.log(areParenthesesBalanced("())(")); 
+//   return open === close;
+// }
+// console.log(areParenthesesBalanced("string()ichida(qavslar)soni()balansda"));
+// console.log(areParenthesesBalanced("(abc)(def)")); 
+// console.log(areParenthesesBalanced("())(")); 
 
 
 // TASK ZN:
