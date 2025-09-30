@@ -1,25 +1,38 @@
+// TASK ZQ:
+
+// Shunday function yozing, u parametridagi array ichida 2 marta qaytarilgan sonlarni alohida araryda qaytarsin.
+// MASALAN: findDuplicates([1,2,3,4,5,4,3,4]) return [3, 4]
+
+function rotateArray(arr: number[], index: number): number[] {
+  const left = arr.slice(0, index);
+  const right = arr.slice(index);
+  return [...right.slice(1), ...left, right[0]];
+}
+console.log(rotateArray([1, 2, 3, 4, 5, 6], 3));
+
+
 
 // TASK-ZP:
 
 // Shunday function yozing, u parametridagi string ichidagi raqam va sonlarni sonini sanasin.
 // MASALAN: countNumberAndLetters(“string152%\¥”) return {number:3, letter:6}
 
-function countNumberAndLetters(str: string): { number: number; letter: number } {
-  let numbers = 0;
-  let letters = 0;
+// function countNumberAndLetters(str: string): { number: number; letter: number } {
+//   let numbers = 0;
+//   let letters = 0;
 
-  for (let char of str) {
-    if (/[0-9]/.test(char)) {
-      numbers++;
-    } else if (/[a-zA-Z]/.test(char)) {
-      letters++;
-    }
-  }
-  return { number: numbers, letter: letters };
-}
-console.log(countNumberAndLetters("string152%¥")); 
-console.log(countNumberAndLetters("abc123"));     
-console.log(countNumberAndLetters("Hello! 2025")); 
+//   for (let char of str) {
+//     if (/[0-9]/.test(char)) {
+//       numbers++;
+//     } else if (/[a-zA-Z]/.test(char)) {
+//       letters++;
+//     }
+//   }
+//   return { number: numbers, letter: letters };
+// }
+// console.log(countNumberAndLetters("string152%¥")); 
+// console.log(countNumberAndLetters("abc123"));     
+// console.log(countNumberAndLetters("Hello! 2025")); 
 
 
 // TASK-ZO:
