@@ -1,14 +1,38 @@
+
+// TASK-ZP:
+
+// Shunday function yozing, u parametridagi string ichidagi raqam va sonlarni sonini sanasin.
+// MASALAN: countNumberAndLetters(“string152%\¥”) return {number:3, letter:6}
+
+function countNumberAndLetters(str: string): { number: number; letter: number } {
+  let number = 0;
+  let letter = 0;
+
+  for (const char of str) {
+    if (char >= '0' && char <= '9') {
+      number++;
+    } else if ((char >= 'a' && char <= 'z') || (char >= 'A' && char <= 'Z')) {
+      letter++;
+    }
+  }
+
+  return { number, letter };
+}
+console.log(countNumberAndLetters("string152%¥"));
+
+
+
 // TASK ZQ:
 
 // Shunday function yozing, u parametridagi array ichida 2 marta qaytarilgan sonlarni alohida araryda qaytarsin.
 // MASALAN: findDuplicates([1,2,3,4,5,4,3,4]) return [3, 4]
 
-function rotateArray(arr: number[], index: number): number[] {
-  const left = arr.slice(0, index);
-  const right = arr.slice(index);
-  return [...right.slice(1), ...left, right[0]];
-}
-console.log(rotateArray([1, 2, 3, 4, 5, 6], 3));
+// function rotateArray(arr: number[], index: number): number[] {
+//   const left = arr.slice(0, index);
+//   const right = arr.slice(index);
+//   return [...right.slice(1), ...left, right[0]];
+// }
+// console.log(rotateArray([1, 2, 3, 4, 5, 6], 3));
 
 
 
