@@ -1,24 +1,42 @@
+// TASK ZS:
+
+// Shunday function yozing, bu function parametrdagi array ichida
+// bir marotaba takrorlangan element'ni qaytarsin
+
+// MASALAN: singleNumber([4, 2, 1, 2, 1]); return 4;
+
+function singleNumber(arr: string | any[]) {
+  for (let i = 0; i < arr.length; i++) {
+    const current = arr[i];
+    if (arr.indexOf(current) === arr.lastIndexOf(current)) {
+      return current;
+    }
+  }
+}
+console.log(singleNumber([4, 2, 1, 2, 1])); 
+console.log(singleNumber([9, 3, 9, 7, 3])); 
+
 
 // TASK-ZP:
 
 // Shunday function yozing, u parametridagi string ichidagi raqam va sonlarni sonini sanasin.
 // MASALAN: countNumberAndLetters(“string152%\¥”) return {number:3, letter:6}
 
-function countNumberAndLetters(str: string): { number: number; letter: number } {
-  let number = 0;
-  let letter = 0;
+// function countNumberAndLetters(str: string): { number: number; letter: number } {
+//   let number = 0;
+//   let letter = 0;
 
-  for (const char of str) {
-    if (char >= '0' && char <= '9') {
-      number++;
-    } else if ((char >= 'a' && char <= 'z') || (char >= 'A' && char <= 'Z')) {
-      letter++;
-    }
-  }
+//   for (const char of str) {
+//     if (char >= '0' && char <= '9') {
+//       number++;
+//     } else if ((char >= 'a' && char <= 'z') || (char >= 'A' && char <= 'Z')) {
+//       letter++;
+//     }
+//   }
 
-  return { number, letter };
-}
-console.log(countNumberAndLetters("string152%¥"));
+//   return { number, letter };
+// }
+// console.log(countNumberAndLetters("string152%¥"));
 
 
 
