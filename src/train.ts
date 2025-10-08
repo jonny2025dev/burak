@@ -1,3 +1,22 @@
+// TASK-ZT:
+
+// Shunday function yozing, 
+// u parametridagi string ichida 1 martadan ortiq qaytarilmagan birinchi harf indeksini qaytarsin.
+// MASALAN: firstUniqueCharIndex(“stamp”) return 0
+
+function firstUniqueCharIndex(str: string) {
+  for (let i = 0; i < str.length; i++) {
+    if (str.indexOf(str[i]) === str.lastIndexOf(str[i])) {
+      return i;
+    }
+  }
+  return -1; 
+}
+
+console.log(firstUniqueCharIndex("stamp")); 
+console.log(firstUniqueCharIndex("aabbc"));
+
+
 // TASK ZS:
 
 // Shunday function yozing, bu function parametrdagi array ichida
@@ -5,16 +24,16 @@
 
 // MASALAN: singleNumber([4, 2, 1, 2, 1]); return 4;
 
-function singleNumber(arr: string | any[]) {
-  for (let i = 0; i < arr.length; i++) {
-    const current = arr[i];
-    if (arr.indexOf(current) === arr.lastIndexOf(current)) {
-      return current;
-    }
-  }
-}
-console.log(singleNumber([4, 2, 1, 2, 1])); 
-console.log(singleNumber([9, 3, 9, 7, 3])); 
+// function singleNumber(arr: string | any[]) {
+//   for (let i = 0; i < arr.length; i++) {
+//     const current = arr[i];
+//     if (arr.indexOf(current) === arr.lastIndexOf(current)) {
+//       return current;
+//     }
+//   }
+// }
+// console.log(singleNumber([4, 2, 1, 2, 1])); 
+// console.log(singleNumber([9, 3, 9, 7, 3])); 
 
 
 // TASK-ZP:
