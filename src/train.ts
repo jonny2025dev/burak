@@ -1,20 +1,43 @@
+// TASK-ZU:
+
+// Shunday function yozing, u parametridagi 
+// array ichida takrorlanmagan raqamlar yig'indisini qaytarsin.
+// MASALAN: sumOfUnique([1,2,3,2]) return 4
+
+function sumOfUnique(arr: number[]): number {
+  const count: Record<number, number> = {};
+  for (const num of arr) {
+    count[num] = (count[num] || 0) + 1;
+  }
+  let sum = 0;
+  for (const num in count) {
+    if (count[num] === 1) {
+      sum += Number(num);
+    }
+  }
+
+  return sum;
+}
+console.log(sumOfUnique([1, 2, 3, 2])); 
+console.log(sumOfUnique([1, 1, 1, 1])); 
+
 // TASK-ZT:
 
 // Shunday function yozing, 
 // u parametridagi string ichida 1 martadan ortiq qaytarilmagan birinchi harf indeksini qaytarsin.
 // MASALAN: firstUniqueCharIndex(“stamp”) return 0
 
-function firstUniqueCharIndex(str: string) {
-  for (let i = 0; i < str.length; i++) {
-    if (str.indexOf(str[i]) === str.lastIndexOf(str[i])) {
-      return i;
-    }
-  }
-  return -1; 
-}
+// function firstUniqueCharIndex(str: string) {
+//   for (let i = 0; i < str.length; i++) {
+//     if (str.indexOf(str[i]) === str.lastIndexOf(str[i])) {
+//       return i;
+//     }
+//   }
+//   return -1; 
+// }
 
-console.log(firstUniqueCharIndex("stamp")); 
-console.log(firstUniqueCharIndex("aabbc"));
+// console.log(firstUniqueCharIndex("stamp")); 
+// console.log(firstUniqueCharIndex("aabbc"));
 
 
 // TASK ZS:
